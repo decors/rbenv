@@ -11,7 +11,9 @@ else
     set rbenv_root "$RBENV_ROOT"
 end
 
-set -x PATH $rbenv_root/shims $PATH
+if not contains $rbenv_root/shims $PATH
+    set -x PATH $rbenv_root/shims $PATH
+end
 set -x RBENV_SHELL fish
 if test ! -d "$rbenv_root/shims"; or test ! -d "$rbenv_root/versions"
     command mkdir -p $rbenv_root/{shims,versions}
